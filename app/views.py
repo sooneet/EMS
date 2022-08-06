@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from . models import Employee
 
@@ -11,3 +12,11 @@ def home(request):
         'on_leave':on_leave
     }
     return render(request,'dashboard.html',context)
+
+
+def employee_list(request):
+    employee_list = Employee.objects.all()
+    context = {
+        'employee_list':employee_list,
+    }
+    return render(request,'employee_list.html',context)

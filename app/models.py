@@ -7,7 +7,7 @@ class Employee(models.Model):
     doj = models.DateField(null=True,blank=True)
     department = models.CharField(max_length=100,null=True)
     post = models.CharField(max_length=100,null=True)
-    addess = models.CharField(max_length=100,null=True)
+    address = models.CharField(max_length=100,null=True)
     active = models.BooleanField(default=True)
     leave_count = models.IntegerField(null=True,blank=True,default=0)
     on_leave = models.BooleanField(default=False)
