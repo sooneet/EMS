@@ -13,6 +13,51 @@ def home(request):
     }
     return render(request,'dashboard.html',context)
 
+def create_employee(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        dob = request.POST['dob']
+        doj = request.POST['doj']
+        department= request.POST['department']
+        post = request.POST['post']
+        address = request.POST['address']
+
+        employee = Employee.objects.create(name=name,
+                                    dob=dob,doj=doj,
+                                    department=department,
+                                    post=post,
+                                    address=address)
+        messages.success(request,'Employee Added successfully')          
+        return redirect('employee_list')                  
+    return render(request,'create_employee.html')
+
+def edit_employee(request,id):
+    employee = Employee.objects.get(id=id)
+    if request.method == "POST":
+        name = request.POST['name']
+        dob = request.POST['dob']
+        doj = request.POST['doj']
+        department= request.POST['department']
+        post = request.POST['post']
+        address = request.POST['address']
+
+        employee = Employee.objects.filter(id=id).update(name=name,
+                                    dob=dob,doj=doj,
+                                    department=department,
+                                    post=post,
+                                    address=address)
+        messages.success(request,'Employee Updated successfully')          
+        return redirect('employee_list')                  
+    context = {
+        'employee':employee,
+    }
+    return render(request,'edit_employee.html',context)
+
+def delete_employee(request,id):
+    employee = Employee.objects.get(id=id)
+    employee.delete()
+    messages.success(request,"Employee Deleted successfully")
+    return redirect('employee_list')
 
 def employee_list(request):
     employee_list = Employee.objects.all()

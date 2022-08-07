@@ -49,8 +49,8 @@
         {% endif %}
       </td>
       <td>{% if employee.active %}Active{% else %}Inactive{% endif %}</td>
-    <td><a href="" ><button class="btn btn-success">Edit</button></a>
-        <a href="" onclick="return confirm('Are you sure?')"><button class="btn btn-danger">delete</button></a>
+    <td><a href="{% url 'edit_employee' employee.id %}" ><button class="btn btn-success">Edit</button></a>
+        <a href="{% url 'delete_employee' employee.id %}" onclick="return confirm('Are you sure?')"><button class="btn btn-danger">delete</button></a>
     </td>
   </tr>
 
